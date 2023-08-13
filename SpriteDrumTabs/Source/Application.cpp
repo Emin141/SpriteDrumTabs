@@ -1,27 +1,27 @@
 #include "Application.h"
+#include "AssetManager.h"
+#include "DrumkitPiece.h"
 #include "Globals.h"
 
 #include <fstream>
 #include <iostream>
 #include <memory>
-#include <vector>
-
 #include <plog/Log.h>
 #include <plog/Initializers/RollingFileInitializer.h>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/System.hpp>
+#include <vector>
 
 sdt::Application::~Application()
 {
+	PLOG(plog::info) << "";
 	PLOG(plog::info) << "Closed log file.";
+	PLOG(plog::info) << "";
 }
 
 /*static */ void sdt::Application::Run()
 {
-	plog::init(plog::verbose, "Log.txt");
-	PLOG(plog::info) << "Created and started log file.";
-
 	//Forces only one application to exist.
 	static Application applicationSingleton;
 	applicationSingleton.Init();
@@ -30,9 +30,19 @@ sdt::Application::~Application()
 
 void sdt::Application::Init()
 {
+	InitLogging();
 	LoadConfigFile();
 	SetupInputCallbacks();
 	LoadAssets();
+}
+
+void sdt::Application::InitLogging()
+{
+	//Should actually check if there is an old log file. If there is, rename it.
+	plog::init(plog::verbose, "Log.txt");
+	PLOG(plog::info) << "";
+	PLOG(plog::info) << "Created and started log file.";
+	PLOG(plog::info) << "";
 }
 
 void sdt::Application::LoadConfigFile()
@@ -65,11 +75,32 @@ void sdt::Application::SetupInputCallbacks()
 	_mouseButtonPressedCallbackMap.emplace(sf::Mouse::Button::Left, std::vector<std::function<void()>>());
 	_mouseButtonReleasedCallbackMap.emplace(sf::Mouse::Button::Left, std::vector<std::function<void()>>());
 
-	PLOG(plog::info) << "Custom keybindings as shortcuts for drum kit piece selection are not supported yet.";
+	PLOG(plog::info) << "Custom key-bindings as shortcuts for drum kit piece selection are not supported yet.";
 }
 
 void sdt::Application::LoadAssets()
 {
+	if (_configFile.contains("DrumkitPieces") && _configFile["DrumkitPieces"].is_array())
+	{
+		for (const auto& drumkitPiece : _configFile["DrumkitPieces"])
+		{
+			const sdt::DrumkitPiece::Name name = drumkitPiece["name"];
+			
+			const std::string textureFilepath = "Assets\\Textures\\" + std::string(drumkitPiece["texture"]);
+			AssetManager::Get().LoadDrumkitPieceTexture(name, textureFilepath);
+
+			const std::string audioSampleFilepath = "Assets\\AudioSamples\\" + std::string(drumkitPiece["audioSample"]);
+			AssetManager::Get().LoadDrumkitPieceSound(name, audioSampleFilepath);
+
+			const std::string keybindingString = drumkitPiece["keybinding"];
+			const sf::Keyboard::Key keybindingKey = g_KeyStringMap.find(keybindingString)->second;
+		}
+	}
+	else
+	{
+		PLOG(plog::error) << "Config.json has invalid format. Drumkit pieces will not be initialized.";
+	}
+
 	UNIMPLEMENTED
 }
 

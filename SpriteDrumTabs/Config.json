@@ -1,2 +1,70 @@
 {
+  "DrumkitPieces": [
+    {
+      "name": "Kick",
+      "texture": "Kick.png",
+      "audioSample": "Kick.wav",
+      "keybinding" : "K"
+    },
+    {
+      "name": "Snare",
+      "texture": "Snare.png",
+      "audioSample": "Snare.wav",
+      "keybinding": "J"
+    },
+    {
+      "name": "HiHat",
+      "texture": "HiHat.png",
+      "audioSample": "HiHat.wav",
+      "keybinding": "H"
+    },
+    {
+      "name": "OpenHiHat",
+      "texture": "OpenHiHat.png",
+      "audioSample": "OpenHiHat.wav",
+      "keybinding": "G"
+    },
+    {
+      "name": "LeftCrash",
+      "texture": "LeftCrash.png",
+      "audioSample": "LeftCrash.wav",
+      "keybinding": "Z"
+    },
+    {
+      "name": "RightCrash",
+      "texture": "RightCrash.png",
+      "audioSample": "RightCrash.wav",
+      "keybinding": "O"
+    },
+    {
+      "name": "FloorTom",
+      "texture": "FloorTom.png",
+      "audioSample": "FloorTom.wav",
+      "keybinding": "L"
+    },
+    {
+      "name": "LeftTom",
+      "texture": "LeftTom.png",
+      "audioSample": "LeftTom.wav",
+      "keybinding": "U"
+    },
+    {
+      "name": "RightTom",
+      "texture": "RightTom.png",
+      "audioSample": "RightTom.wav",
+      "keybinding": "I"
+    },
+    {
+      "name": "Ride",
+      "texture": "Ride.png",
+      "audioSample": "Ride.wav",
+      "keybinding": "P"
+    },
+    {
+      "name": "Bell",
+      "texture": "Bell.png",
+      "audioSample": "Bell.wav",
+      "keybinding": "0"
+    }
+  ]
 }

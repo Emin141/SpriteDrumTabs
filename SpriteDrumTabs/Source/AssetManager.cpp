@@ -18,7 +18,7 @@ bool sdt::AssetManager::LoadDrumkitPieceTexture(const sdt::DrumkitPiece::Name& d
 	}
 	else
 	{
-		PLOG(plog::warning) << "Failed to load texture for " << drumkitPieceName << "at filepath" << filepath 
+		PLOG(plog::warning) << "Failed to load texture for " << drumkitPieceName << " at filepath" << filepath 
 			<<". Rendering of this element will not work.";
 		return false;
 	}
@@ -46,7 +46,7 @@ bool sdt::AssetManager::LoadDrumkitPieceSound(const sdt::DrumkitPiece::Name& dru
 	}
 	else
 	{
-		PLOG(plog::warning) << "Failed to load sound for " << drumkitPieceName << "at filepath" << filepath
+		PLOG(plog::warning) << "Failed to load sound for " << drumkitPieceName << " at filepath" << filepath
 			<< ". Audio sample playback of this element will not work.";
 		return false;
 	}

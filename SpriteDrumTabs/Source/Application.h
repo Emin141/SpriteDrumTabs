@@ -33,6 +33,7 @@ private:
 
 	//Init related functions.
 	void Init();
+	void InitLogging();
 	void LoadConfigFile();
 	void SetupInputCallbacks();
 	void LoadAssets();
