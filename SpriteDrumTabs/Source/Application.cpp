@@ -12,29 +12,30 @@
 #include <SFML/Window.hpp>
 #include <SFML/System.hpp>
 
-Application::~Application()
+sdt::Application::~Application()
 {
 	PLOG(plog::info) << "Closed log file.";
 }
 
-/*static */ void Application::Run()
+/*static */ void sdt::Application::Run()
 {
 	plog::init(plog::verbose, "Log.txt");
 	PLOG(plog::info) << "Created and started log file.";
 
-	Application applicationSingleton;
+	//Forces only one application to exist.
+	static Application applicationSingleton;
 	applicationSingleton.Init();
 	applicationSingleton.Update();
 }
 
-void Application::Init()
+void sdt::Application::Init()
 {
 	LoadConfigFile();
 	SetupInputCallbacks();
 	LoadAssets();
 }
 
-void Application::LoadConfigFile()
+void sdt::Application::LoadConfigFile()
 {
 	try
 	{
@@ -53,7 +54,7 @@ void Application::LoadConfigFile()
 	}
 }
 
-void Application::SetupInputCallbacks()
+void sdt::Application::SetupInputCallbacks()
 {
 	for (int32_t keyToBindAsInt = -1; keyToBindAsInt < int32_t(sf::Keyboard::KeyCount); keyToBindAsInt++)
 	{
@@ -67,12 +68,12 @@ void Application::SetupInputCallbacks()
 	PLOG(plog::info) << "Custom keybindings as shortcuts for drum kit piece selection are not supported yet.";
 }
 
-void Application::LoadAssets()
+void sdt::Application::LoadAssets()
 {
 	UNIMPLEMENTED
 }
 
-void Application::Update()
+void sdt::Application::Update()
 {
 	while (_renderWindow.isOpen())
 	{
@@ -110,13 +111,14 @@ void Application::Update()
 		_renderWindow.clear(sf::Color::White);
 		
 		//Draw all.
+		UNIMPLEMENTED
 
 		//Swap buffers.
 		_renderWindow.display();
 	}
 }
 
-void Application::InvokeCallbacks(sf::Keyboard::Key inputKey, KeyboardCallbackMap callbacksMap)
+void sdt::Application::InvokeCallbacks(sf::Keyboard::Key inputKey, KeyboardCallbackMap callbacksMap) const
 {
 	try
 	{
@@ -132,7 +134,7 @@ void Application::InvokeCallbacks(sf::Keyboard::Key inputKey, KeyboardCallbackMa
 	}
 }
 
-void Application::InvokeCallbacks(sf::Mouse::Button inputMouseButton, MouseButtonCallbackMap callbacksMap)
+void sdt::Application::InvokeCallbacks(sf::Mouse::Button inputMouseButton, MouseButtonCallbackMap callbacksMap) const
 {
 	try
 	{

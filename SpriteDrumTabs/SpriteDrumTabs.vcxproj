@@ -135,11 +135,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source\Application.cpp" />
+    <ClCompile Include="Source\AssetManager.cpp" />
+    <ClCompile Include="Source\DrumkitPiece.cpp" />
     <ClCompile Include="Source\Globals.cpp" />
     <ClCompile Include="Source\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Application.h" />
+    <ClInclude Include="Source\AssetManager.h" />
+    <ClInclude Include="Source\DrumkitPiece.h" />
     <ClInclude Include="Source\Globals.h" />
   </ItemGroup>
   <ItemGroup>

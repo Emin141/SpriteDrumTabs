@@ -7,6 +7,7 @@
 #include <nlohmann/json.hpp>
 #include <SFML/Graphics.hpp>
 
+BEGIN_SDT_NAMESPACE
 class Application
 {
 	using json = nlohmann::json;
@@ -38,17 +39,21 @@ private:
 	void Update();
 
 	//Input callback convenience functions.
-	void InvokeCallbacks(sf::Keyboard::Key inputKey, KeyboardCallbackMap callbacksMap);
-	void InvokeCallbacks(sf::Mouse::Button inputMouseButton, MouseButtonCallbackMap callbacksMap);
+	void InvokeCallbacks(sf::Keyboard::Key inputKey, KeyboardCallbackMap callbacksMap) const;
+	void InvokeCallbacks(sf::Mouse::Button inputMouseButton, MouseButtonCallbackMap callbacksMap) const;
 
 	//Fields.
 	sf::RenderWindow _renderWindow{ sf::VideoMode(800, 600), "Sprite drum tabs" + GetVersionString() };
 
 	nlohmann::json _configFile;
 
-	//Callback maps
+	//Callback maps.
 	KeyboardCallbackMap _keyPressedCallbackMap;
 	KeyboardCallbackMap _keyReleasedCallbackMap;
 	MouseButtonCallbackMap _mouseButtonPressedCallbackMap;
 	MouseButtonCallbackMap _mouseButtonReleasedCallbackMap;
+
+	//Drawing related.
+	
 };
+END_SDT_NAMESPACE
