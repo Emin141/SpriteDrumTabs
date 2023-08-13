@@ -1,0 +1,2 @@
+# SpriteDrumTabs
+ A friend of mine had a wish to learn the drums but had no prior musical knowledge. In order to help her memorize the songs I taught her, I made a very simple tab-like system for the drums which relies on colors and images to represent 8th note divisions within bars. This way, she could focus on practicing simple songs alone without having to invest time in learning proper musical notation right from the start. I hope that his can prove useful to someone else as well.
